@@ -24,7 +24,7 @@ def stationary_bootstrap( in_array, bootstrap_n_tot, bootstrap_exp_block_size, b
     # %             stationary block bootstrap sampling
     # %
     # %             To carry out simulations, repeatedly call this function
- 
+  
 
     n_tot = int(bootstrap_n_tot)
     exp_block_size = int(bootstrap_exp_block_size)
