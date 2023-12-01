@@ -100,10 +100,6 @@ def wrap_append_market_data(params,  #params dictionary as in main code
 
 
     #OUTPUT:
-
-    # -- if run_code == False: just returns params dictionary, no changes or modifications!
-
-    # -- if run_code == True: params dictionary, with following fields appended/modified
     #          params["asset_basket"]: (existing field modified) modified by appending historical data
     #                           and associated key stats (mean, stdev, corr matrix) to asset_basket
     #          params["asset_basket_data_settings"]: new dictionary appended  historical data extraction settings for record
@@ -119,9 +115,15 @@ def wrap_append_market_data(params,  #params dictionary as in main code
 
     # Note: if real_or_nominal = "real" (assets or trade signals), the inflation-adjusted returns time series will be constructed here
 
-
-    #Decide if we need to run this code: Only need to run if market data is required
+    # Construct Asset Basket-----------------------------------------------------------------------
     
+    params["asset_basket"] = fun_Data_timeseries_basket.timeseries_basket_construct(
+                            basket_type="asset",
+                            basket_id=params["asset_basket_id"],
+                            add_cash_TrueFalse=params["add_cash_TrueFalse"],
+                            real_or_nominal = params["real_or_nominal"] )
+
+
 
     # -----------------------------------------------------------------------------------------------
     # Underlying assets: Read and process market data

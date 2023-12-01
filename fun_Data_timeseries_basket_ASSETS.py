@@ -13,7 +13,7 @@ def asset_basket(basket_type,   #"asset"
     #------------------------------------------------------------------------------------------------
     #Pre-defined portfolios; "basket_id" will be the identifier
     
-    if basket_id == "Paper_Basic":
+    if basket_id == "Basic_stock_bond":
         #description
         basket_desc = "Basic portfolio for paper: T30, B10 and VWD"
 
