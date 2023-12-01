@@ -10,11 +10,11 @@ import matplotlib.pyplot as plt
 params = {} #Initialize empty dictionary 
 output_parameters = {}
 
-params["T"] = 30 #Time horizon, in years
-params["N_rb"] = 360  #Nr of equally-spaced periods of return data to generate in [0,T]
+params["T"] = 5 #Time horizon, in years
+params["N_rb"] = 60  #Nr of equally-spaced periods of return data to generate in [0,T]
 params["delta_t"] = params["T"] / params["N_rb"]    # Time interval
 
-params["N_d_train"] = int(100) #Nr of data return sample paths to bootstrap
+params["N_d_train"] = int(10) #Nr of data return sample paths to bootstrap
 
 # automatic flag to see if running on GPU machine.
 device = 'cuda' if torch.cuda.is_available() else 'cpu'  
@@ -93,15 +93,35 @@ params = fun_Data_bootstrap_wrapper.wrap_run_bootstrap(
 
 #Plot indices, as demonstration
 
+asset_names = params["asset_basket"]["basket_columns"]
 returns = {}
 indices = {}
 
-for i,asset in enumerate(params["asset_basket"]["basket_columns"]):
+for i,asset in enumerate(asset_names):
     returns[asset] = pd.DataFrame(params["Y_train"][:,:,i]).transpose()
     indices[asset] = returns[asset].cumprod().mul(100)
     
-tick_step_yr = 5
-plt.plot(indices['B10_real_ret'])
-plt.xticks(np.arange(0, params["N_rb"], int(params["N_rb"]/params["T"])*tick_step_yr), np.arange(0,params["T"], tick_step_yr))
-plt.savefig("test.png")
+tick_step_yr = 1
+xticks_loc = np.arange(0, params["N_rb"], int(params["N_rb"]/params["T"])*tick_step_yr)
+xticks_labels = np.arange(0,params["T"], tick_step_yr)
+
+
+f, (ax0, ax1, ax2) = plt.subplots(1, 3, sharey=True, figsize=(12, 5))
+ax0.plot(indices[asset_names[0]])
+ax0.set_title(asset_names[0])
+ax0.set_xticks(xticks_loc, xticks_labels)
+
+ax1.plot(indices[asset_names[1]])
+ax1.set_title(asset_names[1])
+ax1.set_xticks(xticks_loc, xticks_labels)
+
+ax2.plot(indices[asset_names[2]])
+ax2.set_title(asset_names[2])
+ax2.set_xticks(xticks_loc, xticks_labels)
+
+ax0.set_ylabel("Return Index")
+ax1.set_xlabel("Year")
+
+f.savefig("test.png")
+
 check = 0
