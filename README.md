@@ -1,7 +1,3 @@
----
-header-includes:
-  - \usepackage[ruled,vlined,linesnumbered]{algorithm2e}
----
 
 ## Market Data Bootstrapper
 
