@@ -102,26 +102,27 @@ for i,asset in enumerate(asset_names):
     indices[asset] = returns[asset].cumprod().mul(100)
     
 tick_step_yr = 1
-xticks_loc = np.arange(0, params["N_rb"], int(params["N_rb"]/params["T"])*tick_step_yr)
-xticks_labels = np.arange(0,params["T"], tick_step_yr)
+xticks_loc = np.arange(0, params["N_rb"]+1, int(params["N_rb"]/params["T"])*tick_step_yr)
+xticks_labels = np.arange(0,params["T"]+1, tick_step_yr)
 
 
-f, (ax0, ax1, ax2) = plt.subplots(1, 3, sharey=True, figsize=(12, 5))
+f, (ax0, ax1, ax2) = plt.subplots(1, 3, sharey=True, figsize=(16, 5))
 ax0.plot(indices[asset_names[0]])
-ax0.set_title(asset_names[0])
+ax0.set_title("Resampled 30-Day T-Bill",fontsize = 14)
 ax0.set_xticks(xticks_loc, xticks_labels)
 
 ax1.plot(indices[asset_names[1]])
-ax1.set_title(asset_names[1])
+ax1.set_title("Resampled 10-Year U.S. Bond",fontsize = 14)
 ax1.set_xticks(xticks_loc, xticks_labels)
 
 ax2.plot(indices[asset_names[2]])
-ax2.set_title(asset_names[2])
+ax2.set_title("Resampled SP500 Index",fontsize = 14)
 ax2.set_xticks(xticks_loc, xticks_labels)
 
-ax0.set_ylabel("Return Index")
-ax1.set_xlabel("Year")
+ax0.set_ylabel("Index",fontsize = 14)
+ax1.set_xlabel("Year",fontsize = 14)
 
-f.savefig("test.png")
+plt.tight_layout(pad=3)
+f.savefig("example_plot.png")
 
 check = 0
