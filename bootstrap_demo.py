@@ -123,6 +123,6 @@ ax0.set_ylabel("Index",fontsize = 14)
 ax1.set_xlabel("Year",fontsize = 14)
 
 plt.tight_layout(pad=3)
-f.savefig("example_plot.png")
+f.savefig("plots/example_plot.png")
 
 check = 0
