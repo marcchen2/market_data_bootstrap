@@ -21,7 +21,7 @@ The file `bootstrap_demo.py` demonstrates how to generate any number of market p
 Financial time series data are believed to have serial dependency, and to not be i.i.d. Bootstrapping individual returns breaks this dependency. Sampling blocks of data thus has the desirable trait of preserving of the serial dependency between data. 
 
 <p style="text-align: center;">
-    <img src="block_bootstrap.png" width="300"  /><br> 
+    <img src="block_bootstrap.png" width="500"  /><br> 
     <em > Diagram credit to
 <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0131111">El Anbari, Abeer, and Ptitsyn (2015)</a>
 </em>
